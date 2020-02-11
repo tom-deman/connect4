@@ -1,0 +1,12 @@
+- 
+    const xTabs = [ 1, 2, 3, 4, 5, 6, 7 ]
+    const yTabs = [ 1, 2, 3, 4, 5, 6 ]
+
+h1( class='mt-12 text-blue-800 text-xl font-light text-center mb-16' ) Connect 4
+div( class='main bg-gray-900 m-auto flex flex-wrap p-6' )
+    each xTab, xIndex in xTabs
+        each yTab, yIndex in yTabs
+            div(
+                class='dots bg-gray-500 rounded-full m-2'
+                key = xTab + ' - ' + yTab
+            )
