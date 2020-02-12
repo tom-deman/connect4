@@ -1,5 +1,10 @@
-let player = true
+let turn = true
+
+const red    = 'bg-red-400'
+const yellow = 'bg-yellow-400'
+
 let cols   = document.querySelectorAll( '.col' )
+let player = document.querySelector( '.player' )
 
 let zero  = document.querySelectorAll( '.dots-0' )
 let one   = document.querySelectorAll( '.dots-1' )
@@ -8,46 +13,51 @@ let three = document.querySelectorAll( '.dots-3' )
 let four  = document.querySelectorAll( '.dots-4' )
 let five  = document.querySelectorAll( '.dots-5' )
 
-const addRedDot = ( a, i ) => {
-    a[ i ].classList.add( 'bg-red-400' )
+const addDot = ( a, b, i ) => {
+    a[ i ].classList.add( b )
     a[ i ].classList.remove( 'empty' )
+    turn = !turn
 }
 
-const addYellowDot = ( a, i ) => {
-    a[ i ].classList.add( 'bg-yellow-400' )
-    a[ i ].classList.remove( 'empty' )
+const swapPlayer = ( a, b, c ) => {
+    player.innerText = a
+    player.classList.remove( b )
+    player.classList.add( c )
 }
 
 for( let i = 0; i < cols.length; i ++ ) {
+    const wichTurn = ( a ) => {
+        switch( true ) {
+            case ( five[ i ].classList.contains( 'empty' )):
+                addDot( five, a, i )
+                break
+            case ( four[ i ].classList.contains( 'empty' )):
+                addDot( four, a, i )
+                break
+            case ( three[ i ].classList.contains( 'empty' )): 
+                addDot( three, a, i )
+                break
+            case ( two[ i ].classList.contains( 'empty' )):
+                addDot( two, a, i )
+                break
+            case ( one[ i ].classList.contains( 'empty' )):
+                addDot( one, a, i )
+                break 
+            case ( zero[ i ].classList.contains( 'empty' )):
+                addDot( zero, a, i )
+                break
+            default:
+                // Nothing
+                break
+        }
+    }
     cols[ i ].addEventListener( 'click', () => {
-        if( player ) {
-            if( five[ i ].classList.contains( 'empty' )) 
-                addRedDot( five, i )
-            else if( four[ i ].classList.contains( 'empty' )) 
-                addRedDot( four, i )
-            else if( three[ i ].classList.contains( 'empty' )) 
-                addRedDot( three, i )
-            else if( two[ i ].classList.contains( 'empty' )) 
-                addRedDot( two, i )
-            else if( one[ i ].classList.contains( 'empty' )) 
-                addRedDot( one, i )
-            else 
-                addRedDot( zero, i )
-        }
-        else {
-            if( five[ i ].classList.contains( 'empty' )) 
-                addYellowDot( five, i )
-            else if( four[ i ].classList.contains( 'empty' )) 
-                addYellowDot( four, i )
-            else if( three[ i ].classList.contains( 'empty' )) 
-                addYellowDot( three, i )
-            else if( two[ i ].classList.contains( 'empty' )) 
-                addYellowDot( two, i )
-            else if( one[ i ].classList.contains( 'empty' )) 
-                addYellowDot( one, i )
-            else 
-                addYellowDot( zero, i )
-        }
-        player = !player
+        turn
+            ?
+                ( swapPlayer( 'Player 1', 'text-yellow-400', 'text-red-400' ),
+                wichTurn( red ))
+            :
+                ( swapPlayer( 'Player 1', 'text-yellow-400', 'text-red-400' ),
+                wichTurn( yellow ))
     })
 }
