@@ -1,13 +1,14 @@
 - 
-    const xTabs = [ 1, 2, 3, 4, 5, 6, 7 ]
     const yTabs = [ 1, 2, 3, 4, 5, 6 ]
 
-
 h1( class='mt-12 text-blue-800 text-xl font-light text-center mb-12' ) Connect 4
-p( class='text-center text-red-400 mb-6 font-light player' ) Player 1
+p( class='text-center text-red-400 mb-6 font-light player' )
 div( class='main bg-gray-900 m-auto flex flex-wrap p-6' )
-    each xTab, xIndex in xTabs
-        div( class = 'col' )
+    - for( let i = 0; i < 7; i ++ )
+        div(
+            class = 'col'
+            key = i
+        )
             each yTab, yIndex in yTabs
                 div(
                     class=`dots empty bg-gray-500 rounded-full m-2 dots-${yIndex}`
