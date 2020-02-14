@@ -17,8 +17,7 @@ import {
 
 import {
     swapPlayer,
-    win,
-    addDot
+    win
 } from './functions.js'
 
 
