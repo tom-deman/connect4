@@ -88,9 +88,9 @@ for( let i = 0; i < cols.length; i ++ ) {
         for( let i = 0; i < circles.length; i ++ ) {
             if( !circles[ i ].classList.contains( 'empty' )) {
                 count ++
-                console.log(count)
                 if(count === 42) {
-                    alert('end')
+                    alert( `It's a draw` )
+                    window.location.reload()
                 }
             }
         }
