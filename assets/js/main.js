@@ -12,7 +12,8 @@ import {
     bgRed,
     bgYellow,
     textRed,
-    textYellow
+    textYellow,
+    circles
 } from './variables.js'
 
 import {
@@ -31,10 +32,7 @@ while( playerTwo === playerOne || playerTwo.length === 0 )
 
 playerName.innerText = playerOne
 
-
 let turn  = true
-let count = 0
-
 
 export const addDot = ( a, b, i ) => {
     a[ i ].classList.add( b )
@@ -84,10 +82,17 @@ for( let i = 0; i < cols.length; i ++ ) {
                 window.location.reload()
             }
         }
-        count ++
-        if(count === 42) {
-            alert( 'it\'s a draw' )
-            window.location.reload()
+
+        let count = 0
+
+        for( let i = 0; i < circles.length; i ++ ) {
+            if( !circles[ i ].classList.contains( 'empty' )) {
+                count ++
+                console.log(count)
+                if(count === 42) {
+                    alert('end')
+                }
+            }
         }
     })
 }
